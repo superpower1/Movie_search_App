@@ -1,0 +1,22 @@
+
+.info-table td {
+  border: 1px solid black;
+  font-size: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.img-placeholder {
+  width: 300px;
+  height: 450px;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.not_found {
+  font-size: 30px;
+}

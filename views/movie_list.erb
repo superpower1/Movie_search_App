@@ -1,0 +1,29 @@
+
+<!-- <ul>
+  <% @movie_list.each do |movie| %>
+    <li><a href="/movie?movie_id=<%= movie["imdbID"] %>"><%= movie["Title"] %></a></li>
+  <% end %>
+</ul> -->
+
+<div class="masonry">
+  <% @movie_list.each do |movie| %>
+    <div class="item">
+      <div class="item__content">
+        <figure class="effect-zoe">
+        	<img src="<%= movie['Poster'] %>" alt="">
+          <a href="/movie?movie_id=<%= movie["imdbID"] %>"></a>
+        	<figcaption>
+        		<h2><%= movie['Title'] %></h2>
+        		<p class="icon-links">
+        			<a href="#"><span class="icon-heart"></span></a>
+        			<a href="#"><span class="icon-eye"></span></a>
+        			<a href="#"><span class="icon-paper-clip"></span></a>
+        		</p>
+        	</figcaption>
+        </figure>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<script src="/javascripts/hoverEffect.js" charset="utf-8"></script>

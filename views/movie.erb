@@ -1,0 +1,39 @@
+<main class="container">
+  <div class="row">
+    <div class="col-lg-2 col-ls-0">
+    </div>
+    <section class="col-lg-4 col-ls-12">
+      <% if @isPoster %>
+        <img src="<%= @imgSrc %>" alt="poster" class="poster">
+      <% else %>
+        <div class="img-placeholder">
+          <span>Poster not available</span>
+        </div>
+      <% end %>
+    </section>
+    <section class="col-lg-4 col-ls-12 info-table">
+      <table>
+        <% @info.each do |key, value| %>
+          <tr>
+            <td><%= key %></td>
+            <td><%= value %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td>Actors</td>
+          <td>
+            <% @actors.each do |actor| %>
+              <li><%= actor %></li>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>Rotten Tomatoes</td>
+          <td><%= @tomato %></td>
+        </tr>
+      </table>
+    </section>
+    <div class="col-lg-2 col-ls-0">
+    </div>
+  </div>
+</main>

@@ -1,0 +1,13 @@
+<h1>Search movie</h1>
+<form class="form-inline" action="/movie_list" method="get">
+  <input class="form-control mr-sm-2 search-input" type="search" name="movie_name" value="" placeholder="Movie name">
+  <button class="btn btn-outline-success my-2 my-sm-0 hidden" type="submit">Search</button>
+</form>
+
+<ul>
+  <% @history.each do |item| %>
+    <li><a href="/movie?movie_id=<%= item.movie_id %>"><%= item.title %></a></li>
+  <% end %>
+</ul>
+
+<script src="/javascripts/application.js" charset="utf-8"></script>

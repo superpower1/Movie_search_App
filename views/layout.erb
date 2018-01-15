@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Database</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+  <link rel='stylesheet' href='/stylesheets/main.css'>
+  <link rel="stylesheet" href="/stylesheets/movie_list.css">
+  <link rel="stylesheet" href="/stylesheets/set1.css">
+</head>
+<body>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link <%=
+        if request.path_info == '/'
+          'active'
+        end
+      %>" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link <%=
+        if request.path_info == '/about'
+          'active'
+        end
+      %>" href="/about">About</a>
+    </li>
+  </ul>
+
+  <%= yield %>
+
+</body>
+</html>
