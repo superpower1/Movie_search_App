@@ -4,6 +4,7 @@ require 'httparty'
 require_relative 'db_config'
 require_relative 'models/movie_caches'
 require_relative 'models/search_records'
+require_relative 'models/users'
 
 def render_error(msg)
   @error_msg = msg
@@ -92,7 +93,7 @@ end
 
 get '/movie_list' do
   movie_name = params[:movie_name]
-  result = HTTParty.get("http://www.omdbapi.com/?apikey=2f6435d9&s=#{movie_name}").parsed_response
+  result = HTTParty.get("http://www.omdbapi.com/?apikey=2f6435d9&s=#{movie_name}&type=movie").parsed_response
 
   def store_search(name)
     if SearchRecords.find_by(name: name)
@@ -119,6 +120,26 @@ get '/movie_list' do
     render_normal(result)
   end
 
+end
+
+get '/login' do
+  erb :login
+end
+
+post '/session' do
+  user = Users.find_by(email: params[:email])
+  if user && user.authenticate(params[:password])
+    # session is a hash that can be access globally in the server
+    session[:user_id] = user.id
+    redirect '/'
+  else
+    erb :login
+  end
+end
+
+delete '/session' do
+  session[:user_id] = nil
+  redirect '/login'
 end
 
 get '/about' do

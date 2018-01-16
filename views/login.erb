@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="/stylesheets/login.css">
+
+<form class="login" action="/session" method="post">
+
+    <fieldset>
+    	<legend class="legend">Login</legend>
+
+      <div class="input">
+      	<input type="email" placeholder="Email" required name="email"/>
+        <span><i class="fa fa-envelope-o"></i></span>
+      </div>
+
+      <div class="input">
+      	<input type="password" placeholder="Password" name="password" required/>
+        <span><i class="fa fa-lock"></i></span>
+      </div>
+
+      <button type="submit" class="submit"><i class="fa fa-sign-in"></i></button>
+    </fieldset>
+
+    <div class="feedback">
+    	login successful <br />
+      redirecting...
+    </div>
+
+  </form>
+
+  <script src="/javascripts/login.js" charset="utf-8"></script>

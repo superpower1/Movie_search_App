@@ -6,27 +6,41 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
   <link rel='stylesheet' href='/stylesheets/main.css'>
   <link rel="stylesheet" href="/stylesheets/movie_list.css">
-  <link rel="stylesheet" href="/stylesheets/set1.css">
+  <link rel="stylesheet" href="/stylesheets/movie_box.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
 </head>
 <body>
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link <%=
-        if request.path_info == '/'
-          'active'
-        end
-      %>" href="/">Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link <%=
-        if request.path_info == '/about'
-          'active'
-        end
-      %>" href="/about">About</a>
-    </li>
-  </ul>
+  <nav class="navbar navbar-dark bg-dark">
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link <%=
+          if request.path_info == '/'
+            'active'
+          end
+        %>" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link <%=
+          if request.path_info == '/about'
+            'active'
+          end
+        %>" href="/about">About</a>
+      </li>
+    </ul>
+    <a href="/login">
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="button" name="button" >Login</button>
+    </a>
+  </nav>
 
   <%= yield %>
+
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 
 </body>
 </html>

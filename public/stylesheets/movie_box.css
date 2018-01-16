@@ -1,16 +1,4 @@
-@font-face {
-	font-weight: normal;
-	font-style: normal;
-	font-family: 'feathericons';
-	src:url('../fonts/feathericons/feathericons.eot?-8is7zf');
-	src:url('../fonts/feathericons/feathericons.eot?#iefix-8is7zf') format('embedded-opentype'),
-		url('../fonts/feathericons/feathericons.woff?-8is7zf') format('woff'),
-		url('../fonts/feathericons/feathericons.ttf?-8is7zf') format('truetype')
-}
 
-/*---------------*/
-/***** Zoe *****/
-/*---------------*/
 figure.effect-zoe {
 	margin: 0;
 	min-width: 200px;
@@ -63,25 +51,10 @@ figure.effect-zoe:hover p.icon-links a:focus {
 	color: orange;
 }
 
-figure.effect-zoe p.icon-links a span::before {
+figure.effect-zoe p.icon-links a i {
 	display: inline-block;
 	padding: 8px 10px;
-	font-family: 'feathericons';
-	speak: none;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-.icon-eye::before {
-	content: '\e000';
-}
-
-.icon-paper-clip::before {
-	content: '\e001';
-}
-
-.icon-heart::before {
-	content: '\e024';
+	font-size: 20px;
 }
 
 figure.effect-zoe h2 {

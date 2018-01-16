@@ -18,3 +18,21 @@ CREATE TABLE search_record(
   name VARCHAR(255),
   count VARCHAR(255)
 );
+
+CREATE TABLE user(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255),
+  password VARCHAR(255)
+);
+
+CREATE TABLE saved_movie(
+  id SERIAL PRIMARY KEY,
+  movie_id VARCHAR(255),
+  user_id VARCHAR(255)
+);
+
+CREATE TABLE favorite_movie(
+  id SERIAL PRIMARY KEY,
+  movie_id VARCHAR(255),
+  user_id VARCHAR(255)
+);
