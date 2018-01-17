@@ -52,6 +52,20 @@ html, body{
   background-color: orange;
 }
 
+.search-box {
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .search-box h1 {
   color: white;
+  text-transform: uppercase;
+}
+
+.search-history {
+  display: flex;
+  justify-content: center;
 }

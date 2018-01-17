@@ -8,7 +8,9 @@ get   | /about      | about page
 get   | /movie_list | show movie list after search
 get   | /user/:id   | show user homepage
 get   | /login      | show login page
-get   | /user/new   | create new user
+get   | /user/new   | show sign up page
+post  | /user/new   | sign up handler
+get   | /session    | return a json indicate whether user is logged in
 post  | /session    | login handler
 delete| /session    | logout handler
 post  | /like       | add movie to favorite_movie

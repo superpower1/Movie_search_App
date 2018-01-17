@@ -1,6 +1,6 @@
 -- "Title", "Year", "Rated", "Runtime", "Director", "Poster", "Actors", "Ratings"
 
-CREATE TABLE movie_cache(
+CREATE TABLE movie_caches(
   id SERIAL PRIMARY KEY,
   title VARCHAR(255),
   year VARCHAR(4),
@@ -13,26 +13,39 @@ CREATE TABLE movie_cache(
   movie_id VARCHAR(255)
 );
 
-CREATE TABLE search_record(
+CREATE TABLE search_records(
   id SERIAL PRIMARY KEY,
   name VARCHAR(255),
   count VARCHAR(255)
 );
 
-CREATE TABLE user(
+CREATE TABLE users(
   id SERIAL PRIMARY KEY,
   name VARCHAR(255),
   password VARCHAR(255)
 );
 
-CREATE TABLE saved_movie(
+CREATE TABLE saved_movies(
   id SERIAL PRIMARY KEY,
   movie_id VARCHAR(255),
   user_id VARCHAR(255)
 );
 
-CREATE TABLE favorite_movie(
+CREATE TABLE favorite_movies(
   id SERIAL PRIMARY KEY,
   movie_id VARCHAR(255),
   user_id VARCHAR(255)
+);
+
+CREATE TABLE tags(
+  id SERIAL PRIMARY KEY,
+  content VARCHAR(255)
+);
+
+CREATE TABLE movie_tags(
+  id SERIAL PRIMARY KEY,
+  movie_id INTEGER NOT NULL,
+  tag_id INTEGER NOT NULL,
+  FOREIGN KEY (movie_id) REFERENCES movie_caches(id) ON DELETE CASCADE,
+  FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
 );

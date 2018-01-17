@@ -30,17 +30,20 @@
         %>" href="/about">About</a>
       </li>
     </ul>
-    <a href="/login">
-      <button class="btn btn-outline-primary my-2 my-sm-0" type="button" name="button" >Login</button>
-    </a>
+    <% if logged_in? %>
+      <span>Hello, <%= current_user.name %></span>
+      <form class="" action="/session" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="button">Logout</button>
+      </form>
+    <% else %>
+      <a href="/login">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="button" name="button" >Login</button>
+      </a>
+    <% end %>
   </nav>
 
   <%= yield %>
-
-  <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
 
 </body>
 </html>

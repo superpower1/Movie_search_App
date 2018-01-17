@@ -5,6 +5,23 @@ require_relative 'db_config'
 require_relative 'models/movie_caches'
 require_relative 'models/search_records'
 require_relative 'models/users'
+require_relative 'models/favorite_movies'
+require_relative 'models/saved_movies'
+
+# sinatra provide this feature
+enable :sessions
+
+helpers do
+  def current_user
+    Users.find_by(id: session[:user_id])
+  end
+
+  def logged_in?
+    # Use ! to change a object to boolean
+    !!current_user
+  end
+
+end
 
 def render_error(msg)
   @error_msg = msg
@@ -21,18 +38,6 @@ get '/movie' do
   movie_id = params[:movie_id]
 
   def render_normal(result)
-    @info = result.select do |key, value|
-      ["Title", "Year", "Rated", "Runtime", "Director"].include?(key)
-    end
-
-    @isPoster = true
-    if result["Poster"]=="N/A"
-      @isPoster = false
-    else
-      @imgSrc = result["Poster"]
-    end
-
-    @actors = result["Actors"].split(',')
 
     if r=result["Ratings"].find{|rating| rating["Source"] == "Rotten Tomatoes"}
       @tomato = r["Value"]
@@ -52,7 +57,7 @@ get '/movie' do
       movie_id: result['imdbID']
     )
 
-    erb :movie
+    # erb :movie
   end
 
   def render_from_buffer(result)
@@ -73,14 +78,12 @@ get '/movie' do
 
     @actors = result.actors.split(',')
     @tomato = result.ratings
+    @movie_id = result.movie_id
 
     erb :movie
   end
 
-  if MovieCaches.find_by(movie_id: movie_id)
-    result = MovieCaches.find_by(movie_id: movie_id)
-    render_from_buffer(result)
-  else
+  if !MovieCaches.find_by(movie_id: movie_id)
     result = HTTParty.get("http://www.omdbapi.com/?apikey=2f6435d9&i=#{movie_id}").parsed_response
     if result["Response"] == "False"
       render_error(result["Error"])
@@ -88,6 +91,9 @@ get '/movie' do
       render_normal(result)
     end
   end
+
+  result = MovieCaches.find_by(movie_id: movie_id)
+  render_from_buffer(result)
 
 end
 
@@ -142,6 +148,47 @@ delete '/session' do
   redirect '/login'
 end
 
+get '/session' do
+  result = {
+    "login": logged_in?
+    }
+  return result.to_json
+end
+
+post '/like' do
+  if movie = FavoriteMovies.find_by(movie_id: params[:movie_id], user_id: params[:user_id])
+    movie.delete
+    return "unliked"
+  else
+    FavoriteMovies.create(
+      movie_id: params[:movie_id],
+      user_id: params[:user_id]
+    )
+    return "liked"
+  end
+end
+
+post '/save' do
+  if movie = SavedMovies.find_by(movie_id: params[:movie_id], user_id: params[:user_id])
+    movie.delete
+    return "deleted"
+  else
+    SavedMovies.create(
+      movie_id: params[:movie_id],
+      user_id: params[:user_id]
+    )
+    return "saved"
+  end
+end
+
 get '/about' do
   erb :about
+end
+
+get '/user/new' do
+  erb :new_user
+end
+
+post '/user/new' do
+
 end

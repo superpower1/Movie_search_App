@@ -10,7 +10,13 @@
     <div class="item">
       <div class="item__content">
         <figure class="effect-zoe">
-        	<img src="<%= movie['Poster'] %>" alt="">
+          <% if movie['Poster']!="N/A" %>
+            <img src="<%= movie['Poster'] %>" alt="">
+          <% else %>
+            <div class="img-placeholder">
+              <span>Poster not available</span>
+            </div>
+          <% end %>
           <a href="/movie?movie_id=<%= movie["imdbID"] %>"></a>
         	<figcaption>
         		<h2><%= movie['Title'] %></h2>
