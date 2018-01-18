@@ -1,4 +1,4 @@
-require 'sinatra/reloader'
+# require 'sinatra/reloader'
 require 'sinatra'
 require 'httparty'
 require_relative 'db_config'
@@ -244,4 +244,8 @@ post '/user/edit/name' do
   else
     erb :user_edit_name
   end
+end
+
+get '/user' do
+  erb :user
 end

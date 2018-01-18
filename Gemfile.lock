@@ -1,0 +1,54 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activemodel (5.1.4)
+      activesupport (= 5.1.4)
+    activerecord (5.1.4)
+      activemodel (= 5.1.4)
+      activesupport (= 5.1.4)
+      arel (~> 8.0)
+    activesupport (5.1.4)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (~> 0.7)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
+    arel (8.0.0)
+    bcrypt (3.1.11)
+    coderay (1.1.2)
+    concurrent-ruby (1.0.5)
+    httparty (0.15.6)
+      multi_xml (>= 0.5.2)
+    i18n (0.9.1)
+      concurrent-ruby (~> 1.0)
+    method_source (0.9.0)
+    minitest (5.11.1)
+    multi_xml (0.6.0)
+    mustermann (1.0.1)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    rack (2.0.3)
+    rack-protection (2.0.0)
+      rack
+    sinatra (2.0.0)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.0)
+      tilt (~> 2.0)
+    thread_safe (0.3.6)
+    tilt (2.0.8)
+    tzinfo (1.2.4)
+      thread_safe (~> 0.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  activerecord
+  bcrypt
+  httparty
+  pry
+  sinatra
+
+BUNDLED WITH
+   1.16.1

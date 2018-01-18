@@ -30,9 +30,11 @@
         %>" href="/about">About</a>
       </li>
     </ul>
-    <% if logged_in? %>    
-      <a href="/user/edit">
+    <% if logged_in? %>
+      <a href="/user">
         <span>Hello, <%= current_user.name %></span>
+      </a>
+      <a href="/user/edit">
         <i class="fa fa-cogs"></i>
       </a>
     <% else %>

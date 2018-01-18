@@ -49,3 +49,5 @@ CREATE TABLE movie_tags(
   FOREIGN KEY (movie_id) REFERENCES movie_caches(id) ON DELETE CASCADE,
   FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
 );
+
+pg_dump -Fc --no-acl --no-owner -h localhost -U superpower1 movie_db > db.dump
