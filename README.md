@@ -8,8 +8,10 @@ get   | /about      | about page
 get   | /movie_list | show movie list after search
 get   | /user/:id   | show user homepage
 get   | /login      | show login page
-get   | /user/new   | show sign up page
-post  | /user/new   | sign up handler
+get   | /signup     | show sign up page
+post  | /signup     | sign up handler
+get   | /user/edit  | show user edit page
+put   | /user/edit  | edit user profile handler
 get   | /session    | return a json indicate whether user is logged in
 post  | /session    | login handler
 delete| /session    | logout handler

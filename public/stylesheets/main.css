@@ -43,13 +43,7 @@ html, body{
 }
 
 .navbar .nav a {
-  color: orange;
-  font-size: 18px;
   font-weight: 600;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-  background-color: orange;
 }
 
 .search-box {

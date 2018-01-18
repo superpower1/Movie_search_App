@@ -30,12 +30,11 @@
         %>" href="/about">About</a>
       </li>
     </ul>
-    <% if logged_in? %>
-      <span>Hello, <%= current_user.name %></span>
-      <form class="" action="/session" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="button">Logout</button>
-      </form>
+    <% if logged_in? %>    
+      <a href="/user/edit">
+        <span>Hello, <%= current_user.name %></span>
+        <i class="fa fa-cogs"></i>
+      </a>
     <% else %>
       <a href="/login">
         <button class="btn btn-outline-primary my-2 my-sm-0" type="button" name="button" >Login</button>
