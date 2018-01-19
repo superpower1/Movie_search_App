@@ -40,10 +40,18 @@
           <i class="fa fa-share-square-o" aria-hidden="true"></i>
         </a>
         <a href="#" id="like-btn">
-          <i class="fa fa-heart-o" aria-hidden="true"></i>
+          <% if is_liked?(@movie_id) %>
+              <i class="fa fa-heart" aria-hidden="true"></i>
+            <% else %>
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+          <% end %>
         </a>
-        <a href="#" id="save-btn" data-user-id="<%%>">
-          <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+        <a href="#" id="save-btn">
+          <% if is_saved?(@movie_id) %>
+              <i class="fa fa-bookmark" aria-hidden="true"></i>
+            <% else %>
+              <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+          <% end %>
         </a>
       </div>
     </section>

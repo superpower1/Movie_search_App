@@ -1,24 +1,27 @@
-<h2>User Profile</h2>
+<link rel="stylesheet" href="/stylesheets/user_profile.css">
+<div class="user-main">
+  <h2>User Info</h2>
 
-<table>
-  <tr>
-    <td>User Name:</td>
-    <td><%= current_user.name %></td>
-    <td><a href="/user/edit/name">Change</a></td>
-  </tr>
-  <tr>
-    <td>User Email:</td>
-    <td><%= current_user.email %></td>
-    <!-- <td><a href="/user/edit/email">Change</a></td> -->
-  </tr>
-  <tr>
-    <td>Password:</td>
-    <td>******</td>
-    <td><a href="/user/edit/pwd">Change</a></td>
-  </tr>
-</table>
+  <table class="user-info">
+    <tr>
+      <td>User Name:</td>
+      <td><%= current_user.name %></td>
+      <td><a href="/user/edit/name">Change</a></td>
+    </tr>
+    <tr>
+      <td>User Email:</td>
+      <td><%= current_user.email %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Password:</td>
+      <td>******</td>
+      <td><a href="/user/edit/pwd">Change</a></td>
+    </tr>
+  </table>
 
-<form class="" action="/session" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="button">Logout</button>
-</form>
+  <form class="logout-btn" action="/session" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="button">Logout</button>
+  </form>
+</div>

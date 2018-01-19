@@ -13,7 +13,8 @@ html, body{
   height: 100%;
   background: url(../image/bg.jpg) repeat fixed;
   font-family: 'Open Sans', sans-serif;
-  font-weight: 200;
+  font-weight: 400;
+  color: #4285F4;
 }
 
 .info-table td {
@@ -55,11 +56,28 @@ html, body{
 }
 
 .search-box h1 {
-  color: white;
+  color: #4285F4;
   text-transform: uppercase;
 }
 
 .search-history {
-  display: flex;
-  justify-content: center;
+  width: 200px;
+  height: 50%;
+  margin: 0 auto;
+}
+
+.search-history a {
+  text-decoration: none;
+}
+
+.search-history ul {
+  list-style: none;
+}
+
+.user-link {
+  font-size: 18px;
+}
+
+.user-link a {
+  text-decoration: none;
 }

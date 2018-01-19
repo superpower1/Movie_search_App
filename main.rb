@@ -1,4 +1,4 @@
-# require 'sinatra/reloader'
+require 'sinatra/reloader'
 require 'sinatra'
 require 'httparty'
 require_relative 'db_config'
@@ -19,6 +19,31 @@ helpers do
   def logged_in?
     # Use ! to change a object to boolean
     !!current_user
+  end
+
+  def user_favor_movie
+    movie_list = []
+    favor_movies = FavoriteMovie.where(user_id: session[:user_id]).order("id DESC")
+    favor_movies.each do |movie|
+      movie_list.push(MovieBuffer.find_by(movie_id: movie.movie_id))
+    end
+    movie_list
+  end
+
+  def is_liked?(movie_id)
+    if FavoriteMovie.find_by(user_id: session[:user_id], movie_id: movie_id)
+      return true
+    else
+      return false
+    end
+  end
+
+  def is_saved?(movie_id)
+    if SavedMovie.find_by(user_id: session[:user_id], movie_id: movie_id)
+      return true
+    else
+      return false
+    end
   end
 
 end
@@ -129,8 +154,21 @@ get '/movie_list' do
 end
 
 get '/login' do
+  @user = User.new
   session[:return_to] = request.referer
   erb :login
+end
+
+post '/login' do
+  @user = User.find_by(email: params[:email])
+  if @user && @user.authenticate(params[:password])
+    session[:user_id] = @user.id
+    redirect '/'
+  else
+    @user ||= User.new(email: params[:email])
+    @login_failed = true
+    erb :login
+  end
 end
 
 post '/session' do
@@ -205,6 +243,11 @@ post '/signup' do
   end
 end
 
+get '/user' do
+  @movie_list = user_favor_movie
+  erb :user
+end
+
 get '/user/edit' do
   session[:return_to] = request.referer
   erb :user_edit
@@ -244,8 +287,4 @@ post '/user/edit/name' do
   else
     erb :user_edit_name
   end
-end
-
-get '/user' do
-  erb :user
 end

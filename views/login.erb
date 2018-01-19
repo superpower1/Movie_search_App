@@ -1,27 +1,28 @@
 <link rel="stylesheet" href="/stylesheets/login.css">
 
-<form class="login" action="/session" method="post">
+<form class="login" action="/login" method="post" data-login-failed="<%= @login_failed %>">
 
     <fieldset>
     	<legend class="legend">Login</legend>
 
       <div class="input">
-      	<input type="email" placeholder="Email" required name="email"/>
+      	<input id="email" type="email" placeholder="Email" required name="email" value="<%= @user.email %>"/>
         <span><i class="fa fa-envelope-o"></i></span>
       </div>
 
       <div class="input">
-      	<input type="password" placeholder="Password" name="password" required/>
+      	<input id="pwd" type="password" placeholder="Password" name="password" required />
         <span><i class="fa fa-lock"></i></span>
       </div>
 
       <button type="submit" class="submit"><i class="fa fa-sign-in"></i></button>
     </fieldset>
 
-    <div class="feedback">
-    	login successful <br />
-      redirecting...
+    <div class="feedback-success">
+    	Login successful <br />
+      Redirecting...
     </div>
+
 
   </form>
 

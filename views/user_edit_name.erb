@@ -1,7 +1,39 @@
-<form class="" action="/user/edit/name" method="post">
-  <label for="">New user name:</label>
-  <input type="text" name="name" value="">
-  <label for="">Please enter password:</label>
-  <input type="password" name="pwd" value="">
-  <button type="submit" name="button">Update</button>
-</form>
+<link rel="stylesheet" href="/stylesheets/user_profile.css">
+<div class="user-main">
+  <h2>Change User Name</h2>
+  <div class="main-wrapper">
+    <form class="" action="/user/edit/name" method="post">
+      <div class="form-group row">
+        <div class="col-sm-3"></div>
+        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-4">
+          <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<%= current_user.email %>">
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-3"></div>
+        <label for="name" class="col-sm-2 col-form-label">New Name</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" id="name" name="name" value="<%= current_user.name %>">
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-3"></div>
+        <label for="inputPassword" class="col-sm-2 col-form-label">Password:</label>
+        <div class="col-sm-4">
+          <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="pwd">
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6" style="text-align:right">
+          <button type="submit" name="button" class="btn btn-outline-warning">Update</button>
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -9,6 +9,11 @@ $("#like-btn").click(function(){
       console.log(result.login);
       if (result.login) {
         sendRequest("/like");
+        if ($('#like-btn>i').hasClass('fa-heart')) {
+          $('#like-btn>i').removeClass('fa-heart').addClass('fa-heart-o');
+        } else {
+          $('#like-btn>i').removeClass('fa-heart-o').addClass('fa-heart');
+        }
       } else {
         showAlert();
       }
@@ -24,6 +29,11 @@ $("#save-btn").click(function(){
       console.log(result.login);
       if (result.login) {
         sendRequest("/save");
+        if ($('#save-btn>i').hasClass('fa-bookmark')) {
+          $('#save-btn>i').removeClass('fa-bookmark').addClass('fa-bookmark-o');
+        } else {
+          $('#save-btn>i').removeClass('fa-bookmark-o').addClass('fa-bookmark');
+        }
       } else {
         showAlert();
       }

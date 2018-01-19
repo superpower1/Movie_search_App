@@ -1,0 +1,36 @@
+.user-main {
+  padding-top: 20px;
+}
+
+.user-info {
+  display: flex;
+  justify-content: center;
+}
+
+.user-info tr {
+  border-bottom: 2px solid #fff;
+  height: 40px;
+}
+
+.user-info td {
+  width: 100px;
+}
+
+.user-info tr>td:last-child {
+  text-align: right
+}
+
+.logout-btn {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.main-wrapper {
+  padding-top: 50px;
+  font-size: 18px;
+}
+
+.form-control-plaintext {
+  color: #fff;
+}

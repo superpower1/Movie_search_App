@@ -31,12 +31,14 @@
       </li>
     </ul>
     <% if logged_in? %>
-      <a href="/user">
-        <span>Hello, <%= current_user.name %></span>
-      </a>
-      <a href="/user/edit">
-        <i class="fa fa-cogs"></i>
-      </a>
+      <div class="user-link">
+        <a href="/user">
+          <span>Hello, <%= current_user.name %></span>
+        </a>
+        <a href="/user/edit">
+          <i class="fa fa-cogs"></i>
+        </a>
+      </div>
     <% else %>
       <a href="/login">
         <button class="btn btn-outline-primary my-2 my-sm-0" type="button" name="button" >Login</button>

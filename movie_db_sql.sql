@@ -52,4 +52,4 @@ CREATE TABLE movie_tags(
 
 pg_dump -Fc --no-acl --no-owner -h localhost -U superpower1 movie_db > db.dump
 
-heroku pg:backups:restore 'https://github.com/superpower1/Movie_search_App/raw/master/db.dump' DATABASE_URL
+heroku pg:backups:restore https://github.com/superpower1/Movie_search_App/raw/master/db.dump DATABASE_URL
