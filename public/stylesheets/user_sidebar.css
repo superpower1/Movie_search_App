@@ -1,6 +1,7 @@
 main {
   z-index: 0;
   position: relative;
+  padding-top: 20px;
 }
 
 .sidebar {
@@ -139,6 +140,10 @@ main {
   text-transform: uppercase;
   position: relative;
   padding-bottom: 7px;
+}
+
+.sidebar-anchor:hover {
+  text-decoration: none;
 }
 
 .sidebar-anchor:before {

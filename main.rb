@@ -1,4 +1,4 @@
-require 'sinatra/reloader'
+# require 'sinatra/reloader'
 require 'sinatra'
 require 'httparty'
 require_relative 'db_config'
@@ -25,6 +25,15 @@ helpers do
     movie_list = []
     favor_movies = FavoriteMovie.where(user_id: session[:user_id]).order("id DESC")
     favor_movies.each do |movie|
+      movie_list.push(MovieBuffer.find_by(movie_id: movie.movie_id))
+    end
+    movie_list
+  end
+
+  def user_saved_movie
+    movie_list = []
+    saved_movies = SavedMovie.where(user_id: session[:user_id]).order("id DESC")
+    saved_movies.each do |movie|
       movie_list.push(MovieBuffer.find_by(movie_id: movie.movie_id))
     end
     movie_list
@@ -243,14 +252,20 @@ post '/signup' do
   end
 end
 
-get '/user' do
-  @movie_list = user_favor_movie
-  erb :user
-end
-
-get '/user/edit' do
-  session[:return_to] = request.referer
-  erb :user_edit
+get '/user/:option' do
+  case params["option"]
+  when "favor"
+    @movie_list = user_favor_movie
+    @title = "#{current_user.name}'s favorite movies"
+    erb :user
+  when "saved"
+    @movie_list = user_saved_movie
+    @title = "#{current_user.name}'s saved movies"
+    erb :user
+  when "edit"
+    session[:return_to] = request.referer
+    erb :user_edit
+  end
 end
 
 get '/user/edit/:field' do

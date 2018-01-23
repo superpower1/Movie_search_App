@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/stylesheets/user_sidebar.css">
 
 <main>
+  <h2><%= @title %></h2>
   <div class="masonry">
     <% @movie_list.each do |movie| %>
       <div class="item">
@@ -38,19 +39,19 @@
   <ul class="sidebar-list">
     <li class="sidebar-item">
       <i class="fa fa-user"></i>
-      <a href="#" class="sidebar-anchor">
+      <a href="/user/edit" class="sidebar-anchor">
         User Info
       </a>
     </li>
     <li class="sidebar-item">
       <i class="fa fa-heart"></i>
-      <a href="#" class="sidebar-anchor">
+      <a href="/user/favor" class="sidebar-anchor">
         Favorite Movie
       </a>
     </li>
     <li class="sidebar-item">
       <i class="fa fa-bookmark"></i>
-      <a href="#" class="sidebar-anchor">
+      <a href="/user/saved" class="sidebar-anchor">
         Saved Movie
       </a>
     </li>
