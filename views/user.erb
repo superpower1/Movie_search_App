@@ -1,28 +1,63 @@
-<div class="masonry">
-  <% @movie_list.each do |movie| %>
-    <div class="item">
-      <div class="item__content">
-        <figure class="effect-zoe">
-          <% if movie.poster!="N/A" %>
-            <img src="<%= movie.poster %>" alt="">
-          <% else %>
-            <div class="img-placeholder">
-              <span>Poster not available</span>
-            </div>
-          <% end %>
-          <a href="/movie?movie_id=<%= movie.movie_id %>"></a>
-        	<figcaption>
-        		<h2><%= movie.title %></h2>
-        		<p class="icon-links">
-        			<a href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a>
-        			<a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-        			<a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a>
-        		</p>
-        	</figcaption>
-        </figure>
+<link rel="stylesheet" href="/stylesheets/user_sidebar.css">
+
+<main>
+  <div class="masonry">
+    <% @movie_list.each do |movie| %>
+      <div class="item">
+        <div class="item__content">
+          <figure class="effect-zoe">
+            <% if movie.poster!="N/A" %>
+              <img src="<%= movie.poster %>" alt="">
+            <% else %>
+              <div class="img-placeholder">
+                <span>Poster not available</span>
+              </div>
+            <% end %>
+            <a href="/movie?movie_id=<%= movie.movie_id %>"></a>
+            <figcaption>
+              <h2><%= movie.title %></h2>
+              <p class="icon-links">
+                <a href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a>
+              </p>
+            </figcaption>
+          </figure>
+        </div>
       </div>
+    <% end %>
+  </div>
+</main>
+
+<div class="sidebar">
+  <div class="nav-right">
+    <div class="sidebar-button" id="btn">
+      <i class="fa fa-chevron-left"></i>
     </div>
-  <% end %>
+  </div>
+  <ul class="sidebar-list">
+    <li class="sidebar-item">
+      <i class="fa fa-user"></i>
+      <a href="#" class="sidebar-anchor">
+        User Info
+      </a>
+    </li>
+    <li class="sidebar-item">
+      <i class="fa fa-heart"></i>
+      <a href="#" class="sidebar-anchor">
+        Favorite Movie
+      </a>
+    </li>
+    <li class="sidebar-item">
+      <i class="fa fa-bookmark"></i>
+      <a href="#" class="sidebar-anchor">
+        Saved Movie
+      </a>
+    </li>
+  </ul>
 </div>
 
+
+
 <script src="/javascripts/hoverEffect.js" charset="utf-8"></script>
+<script src="/javascripts/user_sidebar.js" charset="utf-8"></script>

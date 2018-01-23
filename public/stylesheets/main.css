@@ -41,10 +41,15 @@ html, body{
 
 .navbar {
   height: 60px;
+  z-index: 2;
 }
 
-.navbar .nav a {
-  font-weight: 600;
+.nav-link {
+  font-size: 18px;
+}
+
+.navbar-brand {
+  font-size: 20px;
 }
 
 .search-box {
@@ -57,7 +62,8 @@ html, body{
 
 .search-box h1 {
   color: #4285F4;
-  text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 45px;
 }
 
 .search-history {

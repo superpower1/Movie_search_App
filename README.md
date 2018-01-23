@@ -7,6 +7,7 @@
 4. sinatra
 5. postgreSQL
 6. ActiveRecord
+7. Google Font API
 
 ## Approach
 1. Draw a wireframe, identify the needs
@@ -26,6 +27,7 @@
 5. Check for duplicate user name in signup page
 6. Load more fnction in the list page
 7. Guess what kind of movie user may want to see based on tags
+8. Sort movies
 
 ## Link to Heroku
 [Movie Search App](https://pure-everglades-64611.herokuapp.com/)
