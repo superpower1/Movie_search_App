@@ -13,6 +13,11 @@
           <span>Poster not available</span>
         </div>
       <% end %>
+      <div class="tags">
+        <% @movie_tags.each do |tag| %>
+        <button type="button" name="button" class="btn btn-outline-primary"><%= tag.content %></button>
+        <% end %>
+      </div>
     </section>
     <section class="col-lg-4 col-ls-12 info-table">
       <table>
@@ -35,6 +40,7 @@
           <td><%= @tomato %></td>
         </tr>
       </table>
+
       <div class="icon-links">
         <a href="#" id="share-btn">
           <i class="fa fa-share-square-o" aria-hidden="true"></i>

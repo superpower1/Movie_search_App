@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="/stylesheets/owl.carousel.min.css">
+<link rel="stylesheet" href="/stylesheets/index_carousel.css">
+
 <div class="search-box">
   <h1>Search Movie</h1>
   <form class="form-inline" action="/movie_list" method="get">
@@ -6,12 +9,23 @@
   </form>
 </div>
 
-<div class="search-history">
-  <ul>
-    <% @history.each do |item| %>
-      <li><a href="/movie?movie_id=<%= item.movie_id %>"><%= item.title %></a></li>
+<div class="carousel-wrap">
+  <div class="owl-carousel">
+    <% @push_movies.each do |item| %>
+      <div class="item">
+        <img src="<%= item.poster %>" class="carousel-img">
+        <a href="/movie?movie_id=<%= item.movie_id %>"></a>
+        <div class="movie-name">
+          <%= item.title %>
+        </div>
+      </div>
     <% end %>
-  </ul>
+
+  </div>
 </div>
 
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js" charset="utf-8"></script> -->
+<script src="/javascripts/owl.carousel.min.js" charset="utf-8"></script>
+<script src="/javascripts/index_carousel.js" charset="utf-8"></script>
 <script src="/javascripts/application.js" charset="utf-8"></script>

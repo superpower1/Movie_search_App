@@ -1,4 +1,5 @@
-# Movie_search_App
+# Movie App
+Movie app is a movie library where people can search for movie information. If signed up, users can save movies they want to see, like movies they love and the app will push movies to users according to the movies they like. 
 
 ## Technologies
 1. jQuery
@@ -22,10 +23,9 @@
 ## Unsolved problems
 1. Add comment feature
 2. Share movie with other users
-3. Finish building tag database
 4. Rate director and actors
 5. Check for duplicate user name in signup page
-6. Load more fnction in the list page
+6. 'Load more' function on the movie list page
 7. Guess what kind of movie user may want to see based on tags
 8. Sort movies
 

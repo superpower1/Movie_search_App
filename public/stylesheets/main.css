@@ -66,20 +66,6 @@ html, body{
   font-size: 45px;
 }
 
-.search-history {
-  width: 200px;
-  height: 50%;
-  margin: 0 auto;
-}
-
-.search-history a {
-  text-decoration: none;
-}
-
-.search-history ul {
-  list-style: none;
-}
-
 .user-link {
   font-size: 18px;
 }

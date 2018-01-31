@@ -1,4 +1,4 @@
-# require 'sinatra/reloader'
+require 'sinatra/reloader'
 require 'sinatra'
 require 'httparty'
 require_relative 'db_config'
@@ -7,6 +7,8 @@ require_relative 'models/search_record'
 require_relative 'models/user'
 require_relative 'models/favorite_movie'
 require_relative 'models/saved_movie'
+require_relative 'models/tag'
+require_relative 'models/movie_tag'
 
 # sinatra provide this feature
 enable :sessions
@@ -63,7 +65,15 @@ def render_error(msg)
 end
 
 get '/' do
-  @history = MovieBuffer.last(5).reverse
+  # @history = MovieBuffer.last(5).reverse
+  if logged_in?
+    @push_movies = user_favor_movie.last(5).reverse
+  else
+    group = FavoriteMovie.group(:movie_id)
+    most_liked_movie_ids = group.count.sort_by{|key, value| value}.last(5).reverse.to_h.keys
+    @push_movies = MovieBuffer.where(movie_id: most_liked_movie_ids)
+  end
+
   erb :index
 end
 
@@ -91,7 +101,20 @@ get '/movie' do
       movie_id: result['imdbID']
     )
 
-    # erb :movie
+    tag_arr = result['Genre'].split(', ')
+
+    tag_arr.each do |tag|
+      if Tag.find_by(content: tag)
+        t=Tag.find_by(content: tag)
+      else
+        t=Tag.create(content: tag)
+      end
+      new_movie_tag = MovieTag.new
+      new_movie_tag.movie_buffer_id = new_record.id
+      new_movie_tag.tag_id = t.id
+      new_movie_tag.save
+    end
+
   end
 
   def render_from_buffer(result)
@@ -110,15 +133,17 @@ get '/movie' do
       @imgSrc = result.poster
     end
 
-    @actors = result.actors.split(',')
+    @actors = result.actors.split(', ')
     @tomato = result.ratings
     @movie_id = result.movie_id
+
+    @movie_tags = result.tags
 
     erb :movie
   end
 
   if !MovieBuffer.find_by(movie_id: movie_id)
-    result = HTTParty.get("http://www.omdbapi.com/?apikey=2f6435d9&i=#{movie_id}").parsed_response
+    result = HTTParty.get("http://www.omdbapi.com/?apikey=#{ENV['OMDB_API_KEY']}&i=#{movie_id}").parsed_response
     if result["Response"] == "False"
       render_error(result["Error"])
     else
@@ -133,7 +158,7 @@ end
 
 get '/movie_list' do
   movie_name = params[:movie_name]
-  result = HTTParty.get("http://www.omdbapi.com/?apikey=2f6435d9&s=#{movie_name}&type=movie").parsed_response
+  result = HTTParty.get("http://www.omdbapi.com/?apikey=#{ENV['OMDB_API_KEY']}&s=#{movie_name}&type=movie").parsed_response
 
   def store_search(name)
     if SearchRecord.find_by(name: name)
@@ -239,16 +264,16 @@ get '/signup' do
 end
 
 post '/signup' do
-  if User.find_by(email: params[:email])
-    erb :signup
-  else
-    User.create(
-      name: params[:name],
-      email: params[:email],
-      password: params[:password]
-    )
+  u = User.new
+  u.name = params[:name]
+  u.email = params[:email]
+  u.password = params[:password]
+  if u.save
     session[:user_id] = User.find_by(email: params[:email]).id
     redirect session.delete(:return_to)
+  else
+    @error_msg = u.errors.messages
+    erb :signup
   end
 end
 
